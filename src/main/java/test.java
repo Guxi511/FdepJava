@@ -8,11 +8,15 @@ import java.util.List;
 
 public class test {
 
+    public static String getType(Object obj){
+        return obj.getClass().getName();
+    }
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
 
 
         String readerCsvFilePath = "C:\\Users\\guyun\\Desktop\\FdepJava\\data\\iris.csv";
+        /*
         CsvReader csvReaderUtil = new CsvReader(readerCsvFilePath);
         csvReaderUtil.readHeaders(); // 跳过表头   如果需要表头的话，不要写这句。
         String[] head = csvReaderUtil.getHeaders(); //获取表头
@@ -28,17 +32,20 @@ public class test {
         long endTime = System.currentTimeMillis();
         long usedTime = (endTime - startTime);
         System.out.println(usedTime);
+        */
 
         long t1 = System.currentTimeMillis();
         CSVUtil csvtest = new CSVUtil();
-        List<String> records = new ArrayList<>();
-        records = csvtest.readCSV(readerCsvFilePath);
-        ArrayList<int[]> tt = new ArrayList<>();
-        int[] tuple = {1,2,3,4,5};
-        tt.add(tuple);
-        System.out.println(Arrays.toString(tt.get(0)));
-        for(int i = 0;i<records.size();i++){
-            System.out.println(records.get(i));
+        List<String> records = csvtest.readCSV(readerCsvFilePath);
+        List<String[]> tuples = new ArrayList<>();
+        for(int i =0;i<records.size();i++){
+            tuples.add(records.get(i).split(","));
+        }
+        for(int i = 0;i<tuples.size();i++){
+            for(int j = 0;j<tuples.get(i).length;j++){
+                System.out.print(tuples.get(i)[j]+" ");
+            }
+            System.out.println("");
         }
         long t2 = System.currentTimeMillis();
         System.out.println(t2-t1);

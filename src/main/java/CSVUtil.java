@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 
 public class CSVUtil {
     static String readPath = "C:\\Users\\guyun\\Desktop\\FdepJava\\data\\iris.csv";
-
     /**
      *读取每行数据
      * @param readPath
@@ -23,7 +22,7 @@ public class CSVUtil {
             CsvReader csvReader = new CsvReader(filePath);
             //boolean re = csvReader.readHeaders(); 略过表头
             while(csvReader.readRecord()){
-                String rawRecord = csvReader.getRawRecord();
+                String rawRecord = csvReader.getRawRecord(); //一整行记录包括逗号 以String格式返回
                 listData.add(rawRecord);
             }
             return listData;
