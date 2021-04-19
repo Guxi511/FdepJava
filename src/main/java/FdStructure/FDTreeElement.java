@@ -339,7 +339,6 @@ public class FDTreeElement {
     }
 
     public void printDependencies(BitSet activePath) {
-
         for (int attr = 1; attr <= maxAttributeNumber; attr++) {
             if (isfd[attr - 1]) {
                 String out = "{";

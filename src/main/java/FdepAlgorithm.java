@@ -126,13 +126,26 @@ public class FdepAlgorithm {
         tuples = new ArrayList<>();
         CSVUtil csvRead = new CSVUtil();
         tuples = csvRead.readCSV(path);
+        columnNames = tuples.get(0);
+        tuples.remove(0);
+        //System.out.println(columnNames);
+        this.numberAttributes = columnNames.size();
+        /*
+        for(int i = 0;i<tuples.size();i++){
+            System.out.println(tuples.get(i));
+        }
 
+         */
     }
 
-    public static void main() throws FileNotFoundException {
+    public static void main(String arg[]) throws FileNotFoundException {
+        long t1 = System.currentTimeMillis();
         FdepAlgorithm algo = new FdepAlgorithm();
-        FdepAlgorithm.path = "C:\\Users\\guyun\\Desktop\\FdepJava\\data\\iris.csv";
+        FdepAlgorithm.path = "C:\\Users\\guyun\\Desktop\\FdepJava\\data\\abalone.csv";
         algo.execute();
+        algo.posCoverTree.printDependencies();
+        long t2 = System.currentTimeMillis();
+        System.out.println("Total time:"+(t2-t1)+"ms");
     }
 
 
