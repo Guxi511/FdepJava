@@ -1,6 +1,8 @@
 import com.csvreader.CsvReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -31,6 +33,10 @@ public class test {
         CSVUtil csvtest = new CSVUtil();
         List<String> records = new ArrayList<>();
         records = csvtest.readCSV(readerCsvFilePath);
+        ArrayList<int[]> tt = new ArrayList<>();
+        int[] tuple = {1,2,3,4,5};
+        tt.add(tuple);
+        System.out.println(Arrays.toString(tt.get(0)));
         for(int i = 0;i<records.size();i++){
             System.out.println(records.get(i));
         }
