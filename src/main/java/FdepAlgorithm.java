@@ -1,6 +1,6 @@
-import FdStructure.FDTree;
-import FdStructure.FDTreeElement;
-import FdStructure.CSVUtil;
+import tools.structure.FDTree;
+import tools.structure.FDTreeElement;
+import tools.CSVUtil;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

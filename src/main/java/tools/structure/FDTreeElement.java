@@ -1,4 +1,4 @@
-package FdStructure;
+package tools.structure;
 
 import java.util.BitSet;
 
