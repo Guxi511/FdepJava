@@ -267,11 +267,12 @@ public class FDTreeElement {
     }
 
 
-    public boolean getGeneralizationAndDelete(BitSet lhs, int a, int currentAttr, BitSet specLhs) {
+    public boolean getGeneralizationAndDelete(BitSet lhs, int a, FDTree root, int currentAttr, BitSet specLhs) {
         boolean found = false;
         int nextSetAttr;
         if (this.isfd[a - 1]) {
             this.isfd[a - 1] = false;
+            root.fds_num--;
             this.rhsAttributes.clear(a);//?为什么可以直接clear？不用检查下面还有没有指向a的fd吗
             return true;
         }
@@ -282,7 +283,7 @@ public class FDTreeElement {
 
         if (this.children[nextSetAttr - 1] != null) {
             if (this.children[nextSetAttr - 1].getRhsAttributes().get(a)) {
-                found = this.children[nextSetAttr - 1].getGeneralizationAndDelete(lhs, a, nextSetAttr, specLhs);
+                found = this.children[nextSetAttr - 1].getGeneralizationAndDelete(lhs, a, root, nextSetAttr, specLhs);
                 if (found) {
                     if (this.isFinalNode(a)) {
                         this.rhsAttributes.clear(a);
@@ -293,7 +294,7 @@ public class FDTreeElement {
         }
         //如果当前节点没有nextSetAttr这个孩子，或者有这个孩子但是这条子树中递归没有找到generalization，就换下一位nextSetAttr再对当前节点进行检查
         if (!found) {
-            found = this.getGeneralizationAndDelete(lhs, a, nextSetAttr, specLhs);
+            found = this.getGeneralizationAndDelete(lhs, a, root, nextSetAttr, specLhs);
         }
 
         return found;

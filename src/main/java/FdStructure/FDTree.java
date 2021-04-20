@@ -3,7 +3,7 @@ package FdStructure;
 import java.util.BitSet;
 
 public class FDTree extends FDTreeElement {
-
+    public int fds_num;
     public FDTree(int maxAttributeNumber) {
         super(maxAttributeNumber);
     }
@@ -12,6 +12,7 @@ public class FDTree extends FDTreeElement {
         this.rhsAttributes.set(1, maxAttributeNumber + 1);
         for (int i = 0; i < maxAttributeNumber; i++) {
             isfd[i] = true;
+            fds_num++;
         }
     }
 
@@ -33,6 +34,7 @@ public class FDTree extends FDTreeElement {
         }
         // mark the last element
         currentNode.markAsLastVertex(a - 1);
+        this.fds_num++;
     }
 
     public boolean isEmpty() {
@@ -49,7 +51,7 @@ public class FDTree extends FDTreeElement {
 
         this.children = filteredTree.children;
         this.isfd = filteredTree.isfd;
-
+        this.fds_num = filteredTree.fds_num;
     }
 
     public void filterGeneralizations() {

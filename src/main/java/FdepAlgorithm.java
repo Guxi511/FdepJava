@@ -42,7 +42,7 @@ public class FdepAlgorithm {
     private void specializePositiveCover(BitSet lhs, int a) {
         BitSet specLhs = new BitSet();
 
-        while (posCoverTree.getGeneralizationAndDelete(lhs, a, 0, specLhs)) {
+        while (posCoverTree.getGeneralizationAndDelete(lhs, a, posCoverTree, 0, specLhs)) {
             for (int attr = this.numberAttributes; attr > 0; attr--) {
                 if (!lhs.get(attr) && (attr != a)) {
                     specLhs.set(attr);
@@ -78,6 +78,7 @@ public class FdepAlgorithm {
      */
     private void negativeCover() {
         negCoverTree = new FDTree(this.numberAttributes);
+        negCoverTree.fds_num = 0;
         for (int i = 0; i < tuples.size(); i++) {
             for (int j = i + 1; j < tuples.size(); j++) {
                 violatedFds(tuples.get(i), tuples.get(j));
@@ -146,6 +147,7 @@ public class FdepAlgorithm {
         algo.execute();
         algo.posCoverTree.printDependencies();
         long t2 = System.currentTimeMillis();
+        System.out.println(algo.posCoverTree.fds_num);
         System.out.println("Total time:"+(double)(t2-t1)/1000+"s");
     }
 
