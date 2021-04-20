@@ -141,11 +141,12 @@ public class FdepAlgorithm {
     public static void main(String arg[]) throws FileNotFoundException {
         long t1 = System.currentTimeMillis();
         FdepAlgorithm algo = new FdepAlgorithm();
-        FdepAlgorithm.path = "C:\\Users\\guyun\\Desktop\\FdepJava\\data\\abalone.csv";
+        String pwd = System.getProperty("user.dir");
+        FdepAlgorithm.path = pwd + "/data/abalone.csv";
         algo.execute();
         algo.posCoverTree.printDependencies();
         long t2 = System.currentTimeMillis();
-        System.out.println("Total time:"+(t2-t1)+"ms");
+        System.out.println("Total time:"+(double)(t2-t1)/1000+"s");
     }
 
 
