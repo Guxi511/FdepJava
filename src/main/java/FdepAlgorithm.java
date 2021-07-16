@@ -23,7 +23,6 @@ public class FdepAlgorithm {
         initialize();
         negativeCover();
         this.tuples = null;
-
         posCoverTree = new FDTree(numberAttributes);
         posCoverTree.addMostGeneralDependencies();
         BitSet activePath = new BitSet();
@@ -143,9 +142,9 @@ public class FdepAlgorithm {
         long t1 = System.currentTimeMillis();
         FdepAlgorithm algo = new FdepAlgorithm();
         String pwd = System.getProperty("user.dir");
-        FdepAlgorithm.path = pwd + "/data/hepatitis.csv";
+        FdepAlgorithm.path = pwd + "/data/iris.csv";
         algo.execute();
-        //algo.posCoverTree.printDependencies();
+        algo.posCoverTree.printDependencies();
         long t2 = System.currentTimeMillis();
         System.out.println(algo.posCoverTree.fds_num);
         System.out.println("Total time:"+(double)(t2-t1)/1000+"s");
